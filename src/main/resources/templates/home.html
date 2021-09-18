@@ -1,30 +1,37 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+	crossorigin="anonymous">
 </head>
 <body>
+	<div class="container">
+		<div class="card" th:each="pedido : ${pedidos}">
+			<div class="card-header" th:text="${pedido.nomeProduto}">Nome do
+				Produto</div>
+			<div>
+				Valor: <span th:text="${pedido.valorNegociado}">200,99</span>
+			</div>
+			<div>
+				Data da entrega <span th:text="${pedido.dataDaEntrega}">10/02/2020</span>
+			</div>
 
-	<div th:each="pedido : ${pedidos}">
-		<div th:text="${pedido.nomeProduto}">Nome do Produto</div>
-		<div>
-			Valor: <span th:text="${pedido.valorNegociado}">200,99</span>
-		</div>
-		<div>
-			Data da entrega <span th:text="${pedido.dataDaEntrega}">10/02/2020</span>
-		</div>
+			<div>Produto</div>
+			<div>
+				<input class="form-control" th:value="${pedido.urlDoProduto}"> url do produto
+			</div>
 
-		<div>Produto</div>
-		<div>
-			<input th:value="${pedido.urlDoProduto}"> url do produto
-		</div>
+			<div>Descrição</div>
+			<div>
+				<textarea class="form-control" th:text="${pedido.descricao}"> Descrição do produto</textarea>
+			</div>
 
-		<div>Descrição</div>
-		<div>
-			<textarea th:text="${pedido.descricao}"> Descrição do produto</textarea>
-		</div>
-
-		<div>
-			<img th:src="${pedido.urlDaImagem}" src="" />
+			<div>
+				<img th:src="${pedido.urlDaImagem}" src="" />
+			</div>
 		</div>
 	</div>
 
