@@ -4,11 +4,11 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-
 
 @Entity
 public class Pedido {
@@ -17,28 +17,15 @@ public class Pedido {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private String nomeProduto;
-	private BigDecimal valorNegociado;
 	private LocalDate dataDaEntrega;
+	private String nomeProduto;
 	private String urlDoProduto;
 	private String urlDaImagem;
 	private String descricao;
+	private BigDecimal valorNegociado;
 
-	public String getNomeProduto() {
-		return nomeProduto;
-	}
-
-	public void setNomeProduto(String nomeProduto) {
-		this.nomeProduto = nomeProduto;
-	}
-
-	public BigDecimal getValorNegociado() {
-		return valorNegociado;
-	}
-
-	public void setValorNegociado(BigDecimal valorNegociado) {
-		this.valorNegociado = valorNegociado;
-	}
+	@Enumerated(EnumType.STRING)
+	private StatusDoPedidio status;
 
 	public LocalDate getDataDaEntrega() {
 		return dataDaEntrega;
@@ -46,6 +33,14 @@ public class Pedido {
 
 	public void setDataDaEntrega(LocalDate dataDaEntrega) {
 		this.dataDaEntrega = dataDaEntrega;
+	}
+
+	public String getNomeProduto() {
+		return nomeProduto;
+	}
+
+	public void setNomeProduto(String nomeProduto) {
+		this.nomeProduto = nomeProduto;
 	}
 
 	public String getUrlDoProduto() {
@@ -70,5 +65,21 @@ public class Pedido {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public BigDecimal getValorNegociado() {
+		return valorNegociado;
+	}
+
+	public void setValorNegociado(BigDecimal valorNegociado) {
+		this.valorNegociado = valorNegociado;
+	}
+
+	public StatusDoPedidio getStatus() {
+		return status;
+	}
+
+	public void setStatus(StatusDoPedidio status) {
+		this.status = status;
 	}
 }
