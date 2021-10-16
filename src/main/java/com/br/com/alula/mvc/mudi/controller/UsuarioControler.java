@@ -41,6 +41,6 @@ public class UsuarioControler {
 	
 	@ExceptionHandler(IllegalArgumentException.class)
 	public String onError() {
-		return "redirect:usuario/home";
+		return "redirect:/usuario/home";
 	}
 }
