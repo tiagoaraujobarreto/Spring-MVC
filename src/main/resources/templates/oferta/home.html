@@ -1,44 +1,77 @@
 <html>
 <head th:replace="~{base::head}"></head>
-<body>
+<body onLoad="onLoad()">
 	<div th:replace="~{base::logo}"></div>
-	<div class="container">
-		<div th:replace="~{base::titulo('Últimos Pedidos')}"></div>
+	<div class="container" id="oferta">
+		<div th:replace="~{base::titulo('Faça sua oferta')}"></div>
 	
-		<div class="card mb-3" th:each="pedido : ${pedidos}">
-			<div class="card-header alert alert-dark" th:text="${pedido.nomeProduto}">Nome do Produto</div>
+		<div class="card mb-3" v-for="pedido in pedidos">
+			<div class="card-header alert alert-dark">{{pedido.nomeProduto}}</div>
 			
 			<div class="card-body">
 				<div class="row">
 					<div class="col-12 col-sm-8 mb-3">
 						<div class="row">
-							<div class="col-md-5">
-								Valor: <span th:if="${pedido.valorNegociado} != null" th:text="${'R$ ' + #numbers.formatDecimal(pedido.valorNegociado,3,'POINT',2,'COMMA')}"></span>
-							</div>
-							<div class="col-md-7">
-								Data da entrega: <span th:text="${#temporals.format(pedido.dataDaEntrega, 'dd/MM/yyyy')}"></span>
-							</div>
+							<div class="col-md-5">Valor: <input /></div>
+							<div class="col-md-7">Data da entrega: <input /></div>
 						</div>
-						<div>
-							Produto: <span th:text="${pedido.nomeProduto}"></span>
-						</div>
-						<div>
-							<input class="form-control" th:value="${pedido.urlDoProduto}">
-						</div>
+						<div>Produto:</div>
+						<div><a v-bind:href="pedido.urlDoProduto">{{pedido.nomeProduto}}</a></div>
 
 						<div>Descrição</div>
-						<div>
-							<textarea class="form-control" th:text="${pedido.descricao}"> Descrição do produto</textarea>
+							<div><textarea class="form-control">{{pedido.descricao}}</textarea>
 						</div>
 					</div>
 					<div class="col-12 col-sm-4">
 						<div>
-							<img class="img-thumbnail" th:src="${pedido.urlDaImagem}" src="" />
+							<img class="img-thumbnail" v-bind:src="pedido.urlDaImagem" />
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<script>
+		function onLoad(){
+			
+			var app = new Vue({
+				  el: '#oferta',
+				  data: {
+				    pedidos: [
+		    	    {
+		    	        "id" : 4,
+		    	        "nomeProduto" : "Echo Studio",
+		    	        "valorNegociado" : null,
+		    	        "dataDaEntrega" : null,
+		    	        "urlProduto" : "https://www.amazon.com.br/Echo-Studio-Smart-Speaker/dp/B07NQBGRKY/ref=sr_1_1?__mk_pt_BR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=3FJ6BU1OUYKVP&dchild=1&keywords=echo+studio&qid=1632968726&sprefix=ECHO+STU%2Caps%2C304&sr=8-1&ufe=app_do%3Aamzn1.fos.95de73c3-5dda-43a7-bd1f-63af03b14751",
+		    	        "urlImagem" : "https://m.media-amazon.com/images/I/61lIhZlkROL._AC_SL1000_.jpg",
+		    	        "descricao" : "Echo Studio - Smart Speaker com áudio de alta fidelidade e Alexa",
+		    	        "status" : "AGUARDANDO"
+		    	    },
+		    	    {
+		    	        "id" : 3,
+		    	        "nomeProduto" : "Fire TV Stick",
+		    	        "valorNegociado" : null,
+		    	        "dataDaEntrega" : null,
+		    	        "urlProduto" : "https://www.amazon.com.br/dp/B0872Y93TY/?pf_rd_r=9CD049SFAG1VYB9V0ADE&pf_rd_p=933f84e7-ef8c-4b1b-87b3-0b918a247c3d&pd_rd_r=4104452c-4276-4823-a84f-f8470370f81b&pd_rd_w=SdTFX&pd_rd_wg=qMQ9w&ref_=pd_gw_unk",
+		    	        "urlImagem" : "https://m.media-amazon.com/images/I/61vJQU94A8L._AC_SL1000_.jpg",
+		    	        "descricao" : "FireTV Stick 4K com Controle Remoto por Voz com Alexa (inclui comandos de TV) | Dolby Vision",
+		    	        "status" : "AGUARDANDO"
+		    	    },
+		    	    {
+		    	        "id" : 1,
+		    	        "nomeProduto" : "Xiaomi Redmi Note 10",
+		    	        "valorNegociado" : null,
+		    	        "dataDaEntrega" : null,
+		    	        "urlProduto" : "https://www.amazon.com.br/Xiaomi-Redmi-Note-Vers%C3%A3o-global/dp/B08YFLGZB4?ref_=Oct_d_otopr_d_16243803011&pd_rd_w=lxOL0&pf_rd_p=32b1ddde-8c67-4d85-bbf2-2754a91fdba5&pf_rd_r=YKD1350069W440CK2RK7&pd_rd_r=beb4214a-b2bc-4f51-b32d-",
+		    	        "urlImagem" : "https://m.media-amazon.com/images/I/61bD+2ZxGyS._AC_SL1500_.jpg",
+		    	        "descricao" : "Xiaomi Redmi Note 10 4GB+64GB Versão global Onyx Gray+ Capa",
+		    	        "status" : "AGUARDANDO"
+		    	    }]
+				  }
+			});
+		}
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 </body>
 </html>
