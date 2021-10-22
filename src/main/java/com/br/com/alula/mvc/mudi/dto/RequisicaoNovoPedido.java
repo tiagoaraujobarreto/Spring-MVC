@@ -3,7 +3,7 @@ package com.br.com.alula.mvc.mudi.dto;
 import javax.validation.constraints.NotBlank;
 
 import com.br.com.alula.mvc.mudi.model.Pedido;
-import com.br.com.alula.mvc.mudi.model.StatusDoPedidio;
+import com.br.com.alula.mvc.mudi.model.StatusDoPedido;
 
 public class RequisicaoNovoPedido {
 
@@ -56,7 +56,7 @@ public class RequisicaoNovoPedido {
 		pedido.setUrlDoProduto(urlProduto);
 		pedido.setUrlDaImagem(urlImagem);
 		pedido.setNomeProduto(nomeProduto);
-		pedido.setStatus(StatusDoPedidio.AGUARDANDO);
+		pedido.setStatus(StatusDoPedido.AGUARDANDO);
 		return pedido;
 	}
 

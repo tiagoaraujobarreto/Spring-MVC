@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.br.com.alula.mvc.mudi.model.Pedido;
-import com.br.com.alula.mvc.mudi.model.StatusDoPedidio;
+import com.br.com.alula.mvc.mudi.model.StatusDoPedido;
 import com.br.com.alula.mvc.mudi.repository.PedidoRepository;
 
 @Controller
@@ -28,7 +28,7 @@ public class HomeController {
 		Sort sort = Sort.by("dataDaEntrega").descending();
 		PageRequest paginacao = PageRequest.of(0, 10, sort);
 
-		List<Pedido> pedidos = pedidoRepository.findByStatus(StatusDoPedidio.ENTREGUE, paginacao);
+		List<Pedido> pedidos = pedidoRepository.findByStatus(StatusDoPedido.ENTREGUE, paginacao);
 		model.addAttribute("pedidos", pedidos);
 		return "home";
 	}

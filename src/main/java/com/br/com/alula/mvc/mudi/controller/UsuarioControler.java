@@ -12,13 +12,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.br.com.alula.mvc.mudi.model.Pedido;
-import com.br.com.alula.mvc.mudi.model.StatusDoPedidio;
+import com.br.com.alula.mvc.mudi.model.StatusDoPedido;
 import com.br.com.alula.mvc.mudi.repository.PedidoRepository;
 
 @Controller
 @RequestMapping("usuario")
 public class UsuarioControler {
 
+	
 	@Autowired
 	private PedidoRepository pedidoRepository;
 	
@@ -33,7 +34,7 @@ public class UsuarioControler {
 	@GetMapping("pedido/{status}")
 	public String porStatus(@PathVariable("status") String status, Model model, Principal principal) {
 
-		List<Pedido> pedidos = pedidoRepository.findByStatusEUsuario(StatusDoPedidio.valueOf(status.toUpperCase()),principal.getName());
+		List<Pedido> pedidos = pedidoRepository.findByStatusEUsuario(StatusDoPedido.valueOf(status.toUpperCase()),principal.getName());
 		model.addAttribute("pedidos", pedidos);
 		model.addAttribute("status", status);
 		return "usuario/home";

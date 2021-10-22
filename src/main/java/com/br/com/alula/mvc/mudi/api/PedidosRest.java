@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.br.com.alula.mvc.mudi.model.Pedido;
-import com.br.com.alula.mvc.mudi.model.StatusDoPedidio;
+import com.br.com.alula.mvc.mudi.model.StatusDoPedido;
 import com.br.com.alula.mvc.mudi.repository.PedidoRepository;
 
 @RestController
@@ -25,7 +25,7 @@ public class PedidosRest {
 		Sort sort = Sort.by("id").descending();
 		PageRequest paginacao = PageRequest.of(0, 10, sort);
 		
-		return pedidoRepository.findByStatus(StatusDoPedidio.AGUARDANDO, paginacao);
+		return pedidoRepository.findByStatus(StatusDoPedido.AGUARDANDO, paginacao);
 	}
 
 }

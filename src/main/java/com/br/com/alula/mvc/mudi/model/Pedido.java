@@ -12,9 +12,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Pedido {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -27,9 +29,10 @@ public class Pedido {
 	private BigDecimal valorNegociado;
 
 	@Enumerated(EnumType.STRING)
-	private StatusDoPedidio status;
+	private StatusDoPedido status;
 
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
 	private User user;
 
 	public LocalDate getDataDaEntrega() {
@@ -80,11 +83,11 @@ public class Pedido {
 		this.valorNegociado = valorNegociado;
 	}
 
-	public StatusDoPedidio getStatus() {
+	public StatusDoPedido getStatus() {
 		return status;
 	}
 
-	public void setStatus(StatusDoPedidio status) {
+	public void setStatus(StatusDoPedido status) {
 		this.status = status;
 	}
 

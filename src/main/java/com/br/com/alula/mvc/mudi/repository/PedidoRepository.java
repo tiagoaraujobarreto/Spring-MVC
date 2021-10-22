@@ -10,18 +10,18 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.br.com.alula.mvc.mudi.model.Pedido;
-import com.br.com.alula.mvc.mudi.model.StatusDoPedidio;
+import com.br.com.alula.mvc.mudi.model.StatusDoPedido;
 
 @Repository
 public interface PedidoRepository extends JpaRepository<Pedido, Long> {
 
 	@Cacheable("books")
-	List<Pedido> findByStatus(StatusDoPedidio aguardando, Pageable sort);
+	List<Pedido> findByStatus(StatusDoPedido aguardando, Pageable sort);
 
 	@Query("SELECT p FROM Pedido p JOIN p.user u WHERE u.username = :username")
 	List<Pedido> findAllByUsuario(@Param("username") String username);
 
 	@Query("SELECT p FROM Pedido p JOIN p.user u WHERE u.username =:username and p.status =:status")
-	List<Pedido> findByStatusEUsuario(@Param("status")StatusDoPedidio status, @Param("username") String username);
+	List<Pedido> findByStatusEUsuario(@Param("status")StatusDoPedido status, @Param("username") String username);
 
 }
