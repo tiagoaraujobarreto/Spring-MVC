@@ -32,6 +32,7 @@ public class Pedido {
 	private BigDecimal valorNegociado;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido", fetch = FetchType.LAZY)
+	@JsonIgnore
 	private List<Oferta> ofertas;
 
 	@Enumerated(EnumType.STRING)

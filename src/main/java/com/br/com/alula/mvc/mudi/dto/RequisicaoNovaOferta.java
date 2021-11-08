@@ -6,14 +6,14 @@ import java.time.format.DateTimeFormatter;
 
 import com.br.com.alula.mvc.mudi.model.Oferta;
 
-public class RequisiscaoNovaOferta {
+public class RequisicaoNovaOferta {
 
 	private Long pedidoId;
 	private String valor;
 	private String dataDaEntrega;
 	private String comentario;
 
-	private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd//MM/yyyy");
+	private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
 	public Long getPedidoId() {
 		return pedidoId;
@@ -52,6 +52,7 @@ public class RequisiscaoNovaOferta {
 		oferta.setComentario(this.comentario);
 		oferta.setDataDaEntrega(LocalDate.parse(this.dataDaEntrega, formatter));
 		oferta.setValor(new BigDecimal(this.valor));
+
 		return oferta;
 	}
 
